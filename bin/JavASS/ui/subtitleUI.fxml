@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavASS.ui.SubtitleController">
+   <center>
+      <TableView fx:id="assTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="numberColumn" prefWidth="31.0" text="N°" />
+          <TableColumn fx:id="lColumn" prefWidth="35.0" text="L" />
+            <TableColumn fx:id="debutColumn" prefWidth="86.0" text="Debut" />
+            <TableColumn fx:id="finColumn" prefWidth="66.0" text="Fin" />
+            <TableColumn fx:id="cpsColumn" prefWidth="32.0" text="CPS" />
+            <TableColumn fx:id="styleColumn" prefWidth="47.0" text="Style" />
+            <TableColumn fx:id="acteurColumn" prefWidth="49.0" text="Acteur" />
+            <TableColumn fx:id="effetColumn" prefWidth="61.0" text="Effet" />
+            <TableColumn fx:id="gaucheColumn" prefWidth="46.0" text="Gauche" />
+            <TableColumn fx:id="droiteColumn" prefWidth="57.0" text="Droite" />
+            <TableColumn fx:id="verticalColumn" prefWidth="39.0" text="Vert." />
+            <TableColumn fx:id="textColumn" prefWidth="573.0" text="Texte" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <TextArea fx:id="line" prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>
