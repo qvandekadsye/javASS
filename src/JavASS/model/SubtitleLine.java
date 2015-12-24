@@ -1,11 +1,11 @@
 package JavASS.model;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 public class SubtitleLine
 {
@@ -13,7 +13,6 @@ public class SubtitleLine
 	protected final IntegerProperty l;
 	protected final StringProperty debut;
 	protected final StringProperty fin;
-	protected final IntegerProperty cps;
 	protected final StringProperty style;
 	protected final StringProperty acteur;
 	protected final StringProperty effet;
@@ -21,6 +20,7 @@ public class SubtitleLine
 	protected final IntegerProperty droite;
 	protected final IntegerProperty vertical;
 	protected final StringProperty text;
+	protected final BooleanProperty iscom;
 	//protected final ObjectProperty<subtitleStyle>
 
 	/**
@@ -28,7 +28,6 @@ public class SubtitleLine
 	 * @param l
 	 * @param start
 	 * @param end
-	 * @param cps
 	 * @param style
 	 * @param acteur
 	 * @param effet
@@ -37,13 +36,13 @@ public class SubtitleLine
 	 * @param vertical
 	 * @param text
 	 */
-	public SubtitleLine(int number, int l, String start, String end,int cps, String style, String acteur, String effet,int gauche, int droite, int vertical, String text)
+	public SubtitleLine(boolean com,int number, int l, String start, String end, String style, String acteur, String effet,int gauche, int droite, int vertical, String text)
 	{
+		this.iscom=new SimpleBooleanProperty(com);
 		this.number = new SimpleIntegerProperty(number);
 		this.l = new SimpleIntegerProperty(l);
 		this.debut = new SimpleStringProperty(start);
 		this.fin = new SimpleStringProperty(end);
-		this.cps = new SimpleIntegerProperty(cps);
 		this.style = new SimpleStringProperty(style);
 		this.acteur = new SimpleStringProperty(acteur);
 		this.effet = new SimpleStringProperty(effet);
@@ -113,20 +112,7 @@ public class SubtitleLine
 		this.fin.set(fin);
 	}
 
-	public int getCPS()
-	{
-		return this.cps.get();
-	}
 
-	public void setCPS(int cps)
-	{
-		this.cps.set(cps);
-	}
-
-	public IntegerProperty cps()
-	{
-		return cps;
-	}
 
 	public String getStyle()
 	{
@@ -231,6 +217,21 @@ public class SubtitleLine
 	public StringProperty text()
 	{
 		return this.text;
+	}
+
+	public boolean getCom()
+	{
+		return this.iscom.get();
+	}
+
+	public void setCom(boolean com)
+	{
+		this.iscom.set(com);
+	}
+
+	public BooleanProperty iscom()
+	{
+		return this.iscom;
 	}
 
 }

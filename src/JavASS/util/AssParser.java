@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import JavASS.model.AssInfo;
 import JavASS.model.SubtitleLine;
@@ -21,6 +22,7 @@ public class AssParser {
 
 	public void read(ObservableList<SubtitleLine> tab)
 	{
+		boolean iscom;
 		int nb=0;
 		String line =null;
 		String title="";
@@ -28,7 +30,7 @@ public class AssParser {
 		boolean flag=false;
 		boolean info =false;
 		boolean assinfobool=false;
-		String[] parse;
+		String[] parse, parseBis;
 		ObservableList<SubtitleLine> ass = FXCollections.observableArrayList();
 		AssInfo infoprop;
 
@@ -43,7 +45,15 @@ public class AssParser {
 				if(flag && info)
 				{
 					parse=line.split(",", 10);
-					SubtitleLine sl = new SubtitleLine(nb, Integer.parseInt(parse[0]), parse[1], parse[2], 0, parse[3], parse[4], parse[8], Integer.parseInt(parse[5]), Integer.parseInt(parse[6]), Integer.parseInt(parse[7]), parse[9]);
+					parseBis = parse[0].split(": ");
+					if(parseBis[0].startsWith("Dialogue"))
+					{
+						iscom=false;
+					}
+					else
+						iscom=true;
+					byte[] btext = parse[9].getBytes();
+					SubtitleLine sl = new SubtitleLine(iscom,nb, Integer.parseInt(parseBis[1]), parse[1], parse[2], parse[3], parse[4], parse[8], Integer.parseInt(parse[5]), Integer.parseInt(parse[6]), Integer.parseInt(parse[7]), new String(btext,"UTF-8"));
 					tab.add(sl);
 					nb++;
 

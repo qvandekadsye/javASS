@@ -9,11 +9,11 @@
    <center>
       <TableView fx:id="assTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="numberColumn" prefWidth="31.0" text="N°" />
+            <TableColumn fx:id="comColumn" prefWidth="43.0" text="Com" />
+          <TableColumn fx:id="numberColumn" prefWidth="63.0" text="N°" />
           <TableColumn fx:id="lColumn" prefWidth="35.0" text="L" />
             <TableColumn fx:id="debutColumn" prefWidth="86.0" text="Debut" />
             <TableColumn fx:id="finColumn" prefWidth="66.0" text="Fin" />
-            <TableColumn fx:id="cpsColumn" prefWidth="32.0" text="CPS" />
             <TableColumn fx:id="styleColumn" prefWidth="47.0" text="Style" />
             <TableColumn fx:id="acteurColumn" prefWidth="49.0" text="Acteur" />
             <TableColumn fx:id="effetColumn" prefWidth="61.0" text="Effet" />
