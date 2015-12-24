@@ -1,11 +1,17 @@
 package JavASS.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
+import JavASS.model.AssFile;
 import JavASS.model.AssInfo;
 import JavASS.model.SubtitleLine;
 import javafx.collections.FXCollections;
@@ -14,6 +20,7 @@ import javafx.collections.ObservableList;
 public class AssParser {
 	String path;
 	BufferedReader br;
+	BufferedWriter bw;
 
 	public AssParser(String chemin)
 	{
@@ -153,6 +160,35 @@ public class AssParser {
 			}
 		}
 		return info;
+	}
+
+	public static void writeASSText(AssFile file, String path) throws IOException
+	{
+		File fichier = new File(path);
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichier),"UTF-8"));
+		out.write("[Events]\n");
+		out.write("Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n");
+		for(SubtitleLine sl : file.getLines())
+		{
+			if(!sl.getCom())
+			{
+				out.write("Dialogue: ");
+			}
+			out.write(sl.getL()+",");
+			out.write(sl.getDebut()+",");
+			out.write(sl.getFin()+",");
+			out.write(sl.getStyle()+",");
+			out.write(sl.getActeur());
+			out.write(sl.getGauche()+",");
+			out.write(sl.getDroite()+",");
+			out.write(sl.getVertical()+",");
+			out.write(sl.getEffet()+",");
+			out.write(sl.getTexte());
+		}
+		out.close();
+
+		}
+
 	}
 
 }

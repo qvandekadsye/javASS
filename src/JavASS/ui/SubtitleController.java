@@ -86,7 +86,7 @@ public class SubtitleController {
 					}
 					else
 					{
-						SubtitleController.this.line.appendText("{/b1}");
+						SubtitleController.this.line.appendText("/b1");
 						firstgras=false;
 					}
 				}
@@ -95,12 +95,12 @@ public class SubtitleController {
 
 					if(!firstitalic)
 					{
-						SubtitleController.this.line.appendText("{/i0}");
+						SubtitleController.this.line.appendText("/i0");
 						firstitalic=true;
 					}
 					else
 					{
-						SubtitleController.this.line.appendText("{/i1}");
+						SubtitleController.this.line.appendText("/i1");
 						firstitalic=false;
 					}
 				}
@@ -109,15 +109,21 @@ public class SubtitleController {
 
 					if(!firstunder)
 					{
-						SubtitleController.this.line.appendText("{/u0}");
+						SubtitleController.this.line.appendText("/u0");
 						firstunder=true;
 					}
 					else
 					{
-						SubtitleController.this.line.appendText("{/u1}");
+						SubtitleController.this.line.appendText("/u1");
 						firstunder=false;
 					}
 				}
+				else if(event.isControlDown()&&((event.getCode()==KeyCode.DIGIT1)  || (event.getCode()==KeyCode.DIGIT2) || (event.getCode()==KeyCode.DIGIT3)
+						|| (event.getCode()==KeyCode.DIGIT4)||(event.getCode()==KeyCode.DIGIT5)||(event.getCode()==KeyCode.DIGIT6)||(event.getCode()==KeyCode.DIGIT7)
+						||(event.getCode()==KeyCode.DIGIT8)||(event.getCode()==KeyCode.DIGIT9)))
+						{
+							SubtitleController.this.line.appendText("/an"+event.getCode().getName().charAt(event.getCode().getName().length()-1));
+						}
 
 			}
 
