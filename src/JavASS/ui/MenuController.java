@@ -41,7 +41,7 @@ public class MenuController {
 	}
 
 	@FXML
-	private void nouveauAction() throws IOException
+	private void ouvrirAction() throws IOException
 	{
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Ouvrir un fichier ASS");
@@ -57,6 +57,12 @@ public class MenuController {
 
 			main.getStage().setTitle(main.getStage().getTitle()+"-"+file.getAbsolutePath());
 		}
+
+	}
+
+	@FXML
+	private void nouveauAction()
+	{
 
 	}
 

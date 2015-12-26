@@ -53,6 +53,7 @@ public class MainClass extends Application {
 		try
 		{
 			//On crée un objet pour charger le FXML MenuUI
+			this.file.getLines().add(new SubtitleLine(true, 1, 1, "", "", "", "", "", 0, 0, 0, ""));
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainClass.class.getResource("ui/MenuUI.fxml"));
 

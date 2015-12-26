@@ -2,11 +2,14 @@ package JavASS.ui;
 
 import JavASS.MainClass;
 import JavASS.model.SubtitleLine;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -71,7 +74,7 @@ public class SubtitleController {
 		textColumn.setCellValueFactory(cellData->cellData.getValue().text());
 		comColumn.setCellValueFactory(cellData ->cellData.getValue().iscom());
 		assTable.getSelectionModel().selectedItemProperty().addListener((observable,old,newLine)->displayTextOnTA(newLine));
-
+		this.line.setPrefColumnCount(21);
 		this.line.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
@@ -124,6 +127,16 @@ public class SubtitleController {
 						{
 							SubtitleController.this.line.appendText("/an"+event.getCode().getName().charAt(event.getCode().getName().length()-1));
 						}
+				else if(event.getCode()==KeyCode.ENTER)
+				{
+					TableViewSelectionModel<SubtitleLine> sb =SubtitleController.this.assTable.getSelectionModel();
+					if(sb.getSelectedIndex()==sb.getTableView().getItems().size()-1)
+					{
+						sb.getTableView().getItems().add(new SubtitleLine(false, sb.getTableView().getItems().size()+1, 0, "", "", "", "", "", 0, 0, 0, ""));
+					}
+					sb.getSelectedItem().setText(SubtitleController.this.line.getText());
+					sb.selectNext();
+				}
 
 			}
 

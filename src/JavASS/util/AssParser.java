@@ -187,8 +187,8 @@ public class AssParser {
 		}
 		out.close();
 
-		}
-
 	}
 
 }
+
+
