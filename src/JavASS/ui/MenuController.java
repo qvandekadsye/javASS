@@ -49,6 +49,7 @@ public class MenuController {
 		File file =fc.showOpenDialog(main.getStage());
 		if(file != null)
 		{
+			this.main.getFile().getLines().clear();
 			this.parser=new AssParser(file.getAbsolutePath());
 			this.parser.readInfo();
 			main.getAssData().clear();
@@ -64,6 +65,18 @@ public class MenuController {
 	private void nouveauAction()
 	{
 
+	}
+
+	@FXML
+	private void enregistrerSousAction() throws IOException
+	{
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Enregistrer le fichier ASS sous");
+		File file =fc.showSaveDialog(main.getStage());
+		if(file != null)
+		{
+			AssParser.writeASS(main.getFile(), file.getAbsolutePath().toString());
+		}
 	}
 
 	@FXML

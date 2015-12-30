@@ -128,6 +128,13 @@ public class AssInfoController {
 		this.main = main;
 	}
 
+	@FXML
+	private void onOK()
+	{
+		this.updateInfo();
+		//this.main.getStage().close();
+	}
+
 
 
 }

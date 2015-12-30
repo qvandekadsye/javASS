@@ -17,11 +17,12 @@
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-              <MenuItem mnemonicParsing="false" text="Ouvrir">
+              <MenuItem mnemonicParsing="false" onAction="#ouvrirAction" text="Ouvrir">
              	 <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                    </accelerator>
                    </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#enregistrerSousAction" text="Enregistrer Sous" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#infoAction" text="Informations du script" />
             </items>

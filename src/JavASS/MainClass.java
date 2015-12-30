@@ -32,6 +32,7 @@ public class MainClass extends Application {
 	public MainClass()
 	{
 		this.file = new AssFile();
+		System.out.println(this.file.getInfo()==null);
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class MainClass extends Application {
 		try
 		{
 			//On crée un objet pour charger le FXML MenuUI
-			this.file.getLines().add(new SubtitleLine(true, 1, 1, "", "", "", "", "", 0, 0, 0, ""));
+			this.file.getLines().add(new SubtitleLine(false, 1, 1, "", "", "", "", "", 0, 0, 0, ""));
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainClass.class.getResource("ui/MenuUI.fxml"));
 

@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -44,7 +45,7 @@ public class SubtitleController {
 	private TableColumn<SubtitleLine,String>textColumn;
 
 	@FXML
-	private TextArea line;
+	private TextField line;
 
 	private MainClass main;
 
@@ -135,7 +136,9 @@ public class SubtitleController {
 						sb.getTableView().getItems().add(new SubtitleLine(false, sb.getTableView().getItems().size()+1, 0, "", "", "", "", "", 0, 0, 0, ""));
 					}
 					sb.getSelectedItem().setText(SubtitleController.this.line.getText());
+					SubtitleController.this.line.clear();
 					sb.selectNext();
+
 				}
 
 			}

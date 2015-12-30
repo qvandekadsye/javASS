@@ -12,6 +12,7 @@ public class AssFile {
 
 	public AssFile()
 	{
+		this.info = new AssInfo();
 
 	}
 

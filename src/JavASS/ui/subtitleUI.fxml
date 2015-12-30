@@ -25,6 +25,6 @@
       </TableView>
    </center>
    <top>
-      <TextArea fx:id="line" prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER" />
+      <TextField fx:id="line" alignment="TOP_LEFT" prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

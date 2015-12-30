@@ -97,7 +97,7 @@
       </Group>
       <ButtonBar layoutX="122.0" layoutY="423.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button fx:id="ok" mnemonicParsing="false" onAction="#updateInfo" text="OK" />
+            <Button fx:id="ok" mnemonicParsing="false" onAction="#onOK" text="OK" />
             <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancel" text="Annuler" />
         </buttons>
       </ButtonBar>
