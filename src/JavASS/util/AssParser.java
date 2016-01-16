@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import JavASS.model.AssFile;
 import JavASS.model.AssInfo;
@@ -51,7 +52,7 @@ public class AssParser {
 
 				if(flag && info)
 				{
-					System.out.println(line);
+
 					parse=line.split(",", 10);
 					parseBis = parse[0].split(": ");
 					if(parseBis[0].startsWith("Dialogue"))
@@ -90,78 +91,93 @@ public class AssParser {
 		String line = null;
 		AssInfo info = new AssInfo();
 		this.br = new BufferedReader(new FileReader(this.path));
-		while((line=br.readLine()) != null)
-		{
-			if(line.startsWith("Title: "))
+		while((line=br.readLine().replaceAll(" ", "")) != null && !line.equals("[V4+ Styles]"))
+		{System.out.println(line);
+			if(line.startsWith("Title:"))
 			{
-				System.out.println(line.substring("Titre: ".length()));
-				info.setTitre(line.substring("Titre: ".length()));
+				System.out.println(line.substring("Titre:".length()));
+				info.setTitre(line.substring("Titre:".length()));
 			}
-			else if(line.startsWith("WrapStyle: "))
+			else if(line.startsWith("WrapStyle:"))
 			{
-				System.out.println(line.substring("WrapStyle: ".length()));
-				info.setWrapStyle(Integer.parseInt(line.substring("WrapStyle: ".length())));
+				System.out.println(line.substring("WrapStyle:".length()));
+				info.setWrapStyle(Integer.parseInt(line.substring("WrapStyle:".length())));
 			}
-			else if(line.startsWith("ScaledBorderAndShadow: "))
+			else if(line.startsWith("ScaledBorderAndShadow:"))
 			{
-				System.out.println(line.substring("ScaledBorderAndShadow: ".length()));
-				String res = line.substring("ScaledBorderAndShadow: ".length());
+				System.out.println(line.substring("ScaledBorderAndShadow:".length()));
+				String res = line.substring("ScaledBorderAndShadow:".length());
 				info.setScale(res.equals("yes"));
 			}
-			else if(line.startsWith("YCbCr Matrix: "))
+			else if(line.startsWith("YCbCrMatrix:"))
 			{
-				System.out.println(line.substring("YCbCr Matrix: ".length()));
-				info.setYCbCr(line.substring("YCbCr Matrix: ".length()));
+				System.out.println(line.substring("YCbCrMatrix:".length()));
+				info.setYCbCr(line.substring("YCbCrMatrix:".length()));
 			}
-			else if(line.startsWith("Original Script: "))
+			else if(line.startsWith("OriginalScript:"))
 			{
-				System.out.println(line.substring("Original Script: ".length()));
-				info.setOriginalScript(line.substring("Original Script: ".length()));
+				System.out.println(line.substring("OriginalScript:".length()));
+				info.setOriginalScript(line.substring("OriginalScript:".length()));
 			}
-			else if(line.startsWith("Original Translation: "))
+			else if(line.startsWith("OriginalTranslation:"))
 			{
-				System.out.println(line.substring("Original Translation: ".length()));
-				info.setTraduction(line.substring("Original Translation: ".length()));
+				System.out.println(line.substring("OriginalTranslation:".length()));
+				info.setTraduction(line.substring("Original Translation:".length()));
 			}
-			else if(line.startsWith("Original Editing: "))
+			else if(line.startsWith("OriginalEditing:"))
 			{
-				System.out.println(line.substring("Original Editing: ".length()));
-				info.setEdition(line.substring("Original Editing: ".length()));
+				System.out.println(line.substring("OriginalEditing:".length()));
+				info.setEdition(line.substring("Original Editing:".length()));
 			}
-			else if(line.startsWith("Original Timing: "))
+			else if(line.startsWith("OriginalTiming:"))
 			{
-				System.out.println(line.substring("Original Timing: ".length()));
-				info.setTiming(line.substring("Original Timing: ".length()));
+				System.out.println(line.substring("OriginalTiming:".length()));
+				info.setTiming(line.substring("OriginalTiming:".length()));
 			}
-			else if(line.startsWith("Synch Point: "))
+			else if(line.startsWith("SynchPoint:"))
 			{
-				System.out.println(line.substring("Synch Point: ".length()));
-				info.setSynch(line.substring("Synch Point: ".length()));
+				System.out.println(line.substring("SynchPoint:".length()));
+				info.setSynch(line.substring("SynchPoint:".length()));
 			}
-			else if(line.startsWith("Script Updated By: "))
+			else if(line.startsWith("ScriptUpdatedBy:"))
 			{
-				System.out.println(line.substring("Script Updated By: ".length()));
-				info.setUpdatedBy(line.substring("Script Updated By: ".length()));
+				System.out.println(line.substring("ScriptUpdatedBy:".length()));
+				info.setUpdatedBy(line.substring("ScriptUpdatedBy:".length()));
 			}
-			else if(line.startsWith("Update Details: "))
+			else if(line.startsWith("UpdateDetails:"))
 			{
-				System.out.println(line.substring("Update Details: ".length()));
-				info.setUpdateDetails(line.substring("Update Details: ".length()));
+				System.out.println(line.substring("UpdateDetails:".length()));
+				info.setUpdateDetails(line.substring("UpdateDetails:".length()));
 			}
-			else if(line.startsWith("PlayResX: "))
+			else if(line.startsWith("PlayResX:"))
 			{
-				System.out.println(line.substring("PlayResX: ".length()));
-				info.setResX(Integer.parseInt((line.substring("PlayResX: ".length()))));
+				System.out.println(line.substring("PlayResX:".length()));
+				info.setResX(Integer.parseInt((line.substring("PlayResX:".length()))));
 			}
-			else if(line.startsWith("PlayResY: "))
+			else if(line.startsWith("PlayResY:"))
 			{
-				System.out.println(line.substring("PlayResY: ".length()));
-				info.setResY(Integer.parseInt((line.substring("PlayResY: ".length()))));
+				System.out.println(line.substring("PlayResY:".length()));
+				info.setResY(Integer.parseInt((line.substring("PlayResY:".length()))));
 				break;
 			}
 		}
 		return info;
 	}
+
+	public ArrayList<String> readStyleLine() throws IOException
+	{
+		ArrayList<String> styles = new ArrayList<>();
+		String line = null;
+
+			while((line=this.br.readLine()).equals("[Events]"))
+			{
+				if(!line.isEmpty())
+					styles.add(line);
+			}
+			return styles;
+
+	}
+
 
 	public static void writeASSInfo(AssFile file, String path, BufferedWriter out) throws IOException
 	{
@@ -226,8 +242,18 @@ public class AssParser {
 		File fichier = new File(path);
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichier),"UTF-8"));
 		writeASSInfo(file, path,out);
+		writeASSStyle(file,path,out);
 		writeASSText(file, path,out);
 		out.close();
+	}
+
+	public static void writeASSStyle(AssFile file, String path,BufferedWriter out) throws IOException
+	{
+		out.write("[V4+ Styles]");
+		for(String style : file.getStyle())
+		{
+			out.write(style+"\n");
+		}
 	}
 
 

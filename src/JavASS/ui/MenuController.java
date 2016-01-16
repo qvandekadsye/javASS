@@ -55,6 +55,7 @@ public class MenuController {
 			main.getAssData().clear();
 			this.parser.read(main.getFile().getLines());
 			this.main.getFile().setInfo(this.parser.readInfo());
+			this.main.getFile().setStyle(this.parser.readStyleLine());
 
 			main.getStage().setTitle(main.getStage().getTitle()+"-"+file.getAbsolutePath());
 		}

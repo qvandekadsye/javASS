@@ -109,6 +109,7 @@ public class AssInfoController {
 	public void display()
 	{
 		this.titre.setText(this.main.getFile().getInfo().getTitre());
+		System.out.println("aaaaaaaaaaaaaaasdq"+this.main.getFile().getInfo().getTitre());
 		this.originalScript.setText(this.main.getFile().getInfo().getOriginalScript());
 		this.traduction.setText(this.main.getFile().getInfo().getTraduction());
 		this.edition.setText(this.main.getFile().getInfo().getEdition());

@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 public class AssFile {
 	protected AssInfo info;
 	protected ObservableList<SubtitleLine> lines = FXCollections.observableArrayList();
-	protected List<AssStyle> style;
+	protected List<String> style;
 
 	public AssFile()
 	{
@@ -16,7 +16,7 @@ public class AssFile {
 
 	}
 
-	public AssFile(AssInfo info, ObservableList<SubtitleLine> lines, List<AssStyle> style)
+	public AssFile(AssInfo info, ObservableList<SubtitleLine> lines, List<String> style)
 	{
 		this.info = info;
 		this.lines = lines;
@@ -31,7 +31,7 @@ public class AssFile {
 		return lines;
 	}
 
-	public List<AssStyle> getStyle() {
+	public List<String> getStyle() {
 		return style;
 	}
 
@@ -43,7 +43,7 @@ public class AssFile {
 		this.lines = lines;
 	}
 
-	public void setStyle(List<AssStyle> style) {
+	public void setStyle(List<String> style) {
 		this.style = style;
 	}
 
